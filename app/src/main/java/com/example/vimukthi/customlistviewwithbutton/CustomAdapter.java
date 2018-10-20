@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +18,6 @@ public class CustomAdapter extends ArrayAdapter<String>{
     ImageButton btnList;
     TextView txtList;
     List<String> listValues;
-
     public CustomAdapter(@NonNull Context context, int resource, List<String> listValues) {
         super(context, resource, listValues);
         this.context = context;
@@ -40,7 +38,12 @@ public class CustomAdapter extends ArrayAdapter<String>{
         btnList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),"you click the button",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),listValues.get(position)+" is deleted",Toast.LENGTH_SHORT).show();
+                String item = listValues.get(position);
+                listValues.remove(item);
+                notifyDataSetChanged();
+
+
             }
         });
 
